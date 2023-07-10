@@ -1,10 +1,9 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 #include <PubSubClient.h>
-#include <TimeLib.h> 
 
-const char* ssid = "MANDO516"; // Nombre de la red Wi-Fi
-const char* password = "993015139"; // Contraseña de la red Wi-Fi
+const char* ssid = "NOMBRE_WIFI"; // Nombre de la red Wi-Fi
+const char* password = "CONTRASEÑA"; // Contraseña de la red Wi-Fi
 
 const char* thingsBoardServer = "http://iot.ceisufro.cl:8080";
 const char* thingsBoardToken = "QPSTgm5N9d4FrW35R12G";
@@ -115,23 +114,3 @@ void reconnect() {
     }
   }
 }
-
-String getTimestamp() {
-  // Obtener la fecha y hora actual
-  time_t now = time(nullptr);
-  struct tm * timeinfo;
-  timeinfo = localtime(&now);
-
-  // Formatear la fecha y hora en el formato deseado (por ejemplo, "YYYY-MM-DD HH:MM:SS")
-  char timestamp[20];
-  sprintf(timestamp, "%04d-%02d-%02d %02d:%02d:%02d",
-          timeinfo->tm_year + 1900,
-          timeinfo->tm_mon + 1,
-          timeinfo->tm_mday,
-          timeinfo->tm_hour,
-          timeinfo->tm_min,
-          timeinfo->tm_sec);
-
-  return String(timestamp);
-}
-
